@@ -15,6 +15,7 @@ let masonry;
 let divs = [];
 let filteredDivs = []; // An array to store the filtered images
 let currentImageIndex;
+let currentImageUrl;
 
 // Function to generate a random number within a range (min, max)
 const generateRandomArrayLength = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -177,7 +178,7 @@ const openImageModal = (imageData) => {
   // Extracting image data from the parameter
   const { imageUrl, title, commentary, author, itemIndex, randomTags } = imageData;
   currentImageIndex = itemIndex;
-
+  currentImageUrl = imageUrl;
   // Update the modal with the selected image and details
   modalImageContainer.style.display = "block";
   modalImage.style.display = "none";
@@ -360,7 +361,7 @@ downloadButtons.forEach((button) => {
     const imageUrl = img.getAttribute("src");
 
     const link = document.createElement("a");
-    link.href = imageUrl;
+    link.href = currentImageUrl;
     link.download = "";
     link.target = "_blank";
     document.body.appendChild(link);
